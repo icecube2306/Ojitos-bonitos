@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        h1 {
+            font-size: 2em;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        #yes {
+            background-color: lightgreen;
+        }
+        #no {
+            background-color: lightcoral;
+        }
+        .heart {
+            display: none;
+            font-size: 4em;
+            animation: pop 0.5s ease-in-out infinite alternate;
+        }
+        @keyframes pop {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+<img src="https://img1.picmix.com/output/stamp/normal/2/4/6/6/2556642_cd9af.png" alt="Ramo de flores" class="flower-image">
+        <h1>Hola ojitos bonitos ¿Puedo ser tu San Valentín?</h1>
+        <div class="buttons">
+            <button id="yes">Sí</button>
+            <button id="no">No</button>
+        </div>
+        <div class="heart">❤️</div>
+    </div>
+
+    <script>
+        let noBtn = document.getElementById("no");
+        let yesBtn = document.getElementById("yes");
+        let heart = document.querySelector(".heart");
+        let noClickCount = 0;
+
+        yesBtn.addEventListener("click", function() {
+            heart.style.display = "block";
+            document.querySelector("h1").textContent = "¡Sabía que dirías que sí! 💖";
+        });
+
+        noBtn.addEventListener("click", function() {
+            let phrases = [
+                "Anda di que sí, me voy a poner triste eh 😢",
+                "Ni las Chivas son así de crueles 🥺",
+                "Piensa en mi corazoncito 💔",
+                "Vuelve a intentarlo, no me rompas el corazón 😭"
+            ];
+            noBtn.textContent = phrases[noClickCount % phrases.length];
+            noClickCount++;
+            yesBtn.style.fontSize = (1.2 + noClickCount * 0.3) + "em";
+        });
+    </script>
+</body>
+</html>
